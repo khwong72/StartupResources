@@ -28,24 +28,10 @@ export default function HeroSection() {
           </motion.h1>
           
           <motion.p 
-            className="mt-8 text-lg leading-8 text-gray-600 mx-auto"
+            className="mt-8 text-lg leading-8 text-gray-600 mx-auto max-w-2xl"
             variants={fadeIn('up', 'tween', 0.3, 0.7)}
           >
             At Startup Resources, we get it—scaling your team on a tight budget is tough. That's why we offer low-cost, flexible hiring support focused on delivering A-players without the typical agency fees.
-          </motion.p>
-          
-          <motion.p 
-            className="mt-6 text-lg leading-8 text-gray-600 mx-auto"
-            variants={fadeIn('up', 'tween', 0.4, 0.7)}
-          >
-            We come from internal talent teams at investment banks, energy firms, and SaaS companies, so we know how to make hiring seamless and efficient for founders.
-          </motion.p>
-          
-          <motion.p 
-            className="mt-6 text-lg leading-8 text-gray-600 mx-auto"
-            variants={fadeIn('up', 'tween', 0.45, 0.7)}
-          >
-            We're not about big commissions or bloated costs—just finding the best talent to grow your business. With flexible fee plans and a focus on delivering top talent that fits your culture, we're here to help you scale smartly without breaking the bank.
           </motion.p>
           
           <motion.div 
