@@ -28,6 +28,13 @@ export default function ServicesSection() {
     }
   ];
 
+  const feeOptions = {
+    title: "FLEXIBLE FEE OPTIONS",
+    description: "Startup Resources offers a simple, affordable fee structure ranging from 10-12% of the candidate's total salary.",
+    details: "You can choose to pay the full amount upfront or split it into 3 payments spread over 6 months, making it easier for your cash flow as you scale your team.",
+    summary: "This way, you get top talent without the financial strain!"
+  };
+
   const benefits = [
     {
       title: "Quality Candidates",
