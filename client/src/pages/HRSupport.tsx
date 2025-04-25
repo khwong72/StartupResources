@@ -3,6 +3,7 @@ import { fadeIn, staggerContainer } from "@/lib/animations";
 import { Users, DollarSign, Handshake, Code, BadgeDollarSign, GraduationCap, BarChart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
+import { Link } from "wouter";
 
 export default function HRSupport() {
   // Ensure page loads at the top
@@ -153,8 +154,10 @@ export default function HRSupport() {
         viewport={{ once: true }}
         className="text-center"
       >
-        <Button size="lg" className="bg-primary hover:bg-primary/90">
-          Get in Touch
+        <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
+          <Link href="/#contact">
+            <a>Get in Touch</a>
+          </Link>
         </Button>
       </motion.div>
     </div>

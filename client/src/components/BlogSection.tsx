@@ -7,30 +7,30 @@ export default function BlogSection() {
   const blogPosts = [
     {
       id: 1,
-      title: "How to Build a Winning Tech Team on a Startup Budget",
-      excerpt: "Discover proven strategies for attracting top talent without breaking the bank. From flexible compensation packages to leveraging your mission...",
-      date: "May 15, 2023",
-      readTime: "5 min read",
-      imageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
-      slug: "/blog/building-tech-team-startup-budget"
+      title: "Crafting a Job Description: CEO's Guide",
+      excerpt: "",
+      date: "Feb 28, 2024",
+      readTime: "",
+      imageUrl: "https://images.squarespace-cdn.com/content/v1/64c7a9fe8afb0d5cac2ebe77/1709151700440-MK594H9B6HQRXK8GQA1Z/Untitled+design+%287%29.png?format=2500w",
+      slug: "/blog/crafting-a-job-description-ceos-guide"
     },
     {
       id: 2,
-      title: "The True Cost of a Bad Hire (And How to Avoid It)",
-      excerpt: "Mis-hires can cost up to 30% of an employee's first-year earnings. Learn the warning signs of a potential bad fit and how to structure your hiring process...",
-      date: "June 3, 2023",
-      readTime: "7 min read",
-      imageUrl: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80",
-      slug: "/blog/cost-of-bad-hire"
+      title: "Talent Strategy For Startups: Finding & Keeping The Best People - Live event recording",
+      excerpt: "You can only grow your startup once you've got the right people – and the race for top startup talent in 2024 will be more competitive than ever.",
+      date: "Jan 10, 2024",
+      readTime: "",
+      imageUrl: "https://images.squarespace-cdn.com/content/v1/64c7a9fe8afb0d5cac2ebe77/1704879058309-E5C1G93V50HZBMAUE0PU/IMAGES+-++The+Uplift+Partnership_+Campaigns%2C+Events%2C+Social+Media%2C+360+Slides%2C+Webinar%2C+Assets+_+Sales+Scoop+Slides+%2822%29.png?format=2500w",
+      slug: "/blog/talent-strategy-for-startups-finding-keeping-the-best-people"
     },
     {
       id: 3,
-      title: "Remote vs. In-Office: Finding the Right Balance for Your Startup",
-      excerpt: "Is your startup better suited for remote work, in-office, or hybrid? We analyze the pros and cons of each model based on real client experiences...",
-      date: "July 12, 2023",
-      readTime: "6 min read",
-      imageUrl: "https://images.unsplash.com/photo-1577412647305-991150c7d163?auto=format&fit=crop&w=800&q=80",
-      slug: "/blog/remote-vs-in-office"
+      title: "Live event: Finding & Keeping The Best People",
+      excerpt: "You can't grow your startup if you don't have the right people. Which is why I'm starting 2024 as a guest of the Uplift Partnership on their Sales Scoop Podcast on January 9th.",
+      date: "Dec 10, 2023",
+      readTime: "",
+      imageUrl: "https://images.squarespace-cdn.com/content/v1/64c7a9fe8afb0d5cac2ebe77/1704659034886-XZVQYGEC2FKLQVM8WF44/%F0%9F%93%92Playbook+-+Startup+Resources+%283%29.png?format=2500w",
+      slug: "/blog/event-announcement"
     }
   ];
 
@@ -46,7 +46,7 @@ export default function BlogSection() {
         >
           <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Insights & Resources</h2>
           <p className="mt-4 text-lg text-gray-600">
-            Expert advice on hiring, retention, and scaling teams for startups
+            Expert advice on talent strategy, recruitment, and HR for startups
           </p>
         </motion.div>
         
@@ -81,13 +81,17 @@ export default function BlogSection() {
                     <Calendar className="w-4 h-4 mr-1" />
                     <span>{post.date}</span>
                   </div>
-                  <div className="flex items-center">
-                    <Clock className="w-4 h-4 mr-1" />
-                    <span>{post.readTime}</span>
-                  </div>
+                  {post.readTime && (
+                    <div className="flex items-center">
+                      <Clock className="w-4 h-4 mr-1" />
+                      <span>{post.readTime}</span>
+                    </div>
+                  )}
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">{post.title}</h3>
-                <p className="text-gray-600 mb-4 line-clamp-3">{post.excerpt}</p>
+                {post.excerpt && (
+                  <p className="text-gray-600 mb-4 line-clamp-3">{post.excerpt}</p>
+                )}
                 <Button asChild variant="link" className="p-0 h-auto text-primary font-medium flex items-center group">
                   <a href={post.slug}>
                     Read More 

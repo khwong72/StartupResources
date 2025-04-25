@@ -1,0 +1,85 @@
+{
+  "smartIndent": true,
+  "tabSize": 2,
+  "indentSize": 2,
+  "insertSpaces": true,
+  "detectIndentation": true,
+  "formatOnSave": true,
+  "formatOnPaste": true,
+  "trimTrailingWhitespace": true,
+  "insertFinalNewline": true,
+  "bracketPairColorization": true,
+  "wordWrap": "off",
+  "rulers": [100],
+  
+  "javascript.format.semicolons": "remove",
+  "typescript.format.semicolons": "remove",
+  "javascript.preferences.quoteStyle": "single",
+  "typescript.preferences.quoteStyle": "single",
+  
+  "colorInfo.formats": [
+    "hsl",
+    "rgb", 
+    "hex"
+  ],
+  
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "reactSnippets.settings.importReactOnTop": true,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "typescript": "typescriptreact"
+  },
+  
+  "tailwindCSS.emmetCompletions": true,
+  "tailwindCSS.validate": true,
+  "tailwindCSS.colorDecorators": true,
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  
+  "files.associations": {
+    "*.js": "javascriptreact",
+    "*.jsx": "javascriptreact",
+    "*.ts": "typescript",
+    "*.tsx": "typescriptreact"
+  },
+  
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.suggestionActions.enabled": true,
+  "typescript.suggestionActions.enabled": true,
+  
+  "builder.showComponentsPanel": true,
+  
+  "editor.formatOnSaveMode": "modifications",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  
+  "extensionPack": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss",
+    "formulahendry.auto-rename-tag",
+    "christian-kohler.path-intellisense",
+    "naumovs.color-highlight"
+  ],
+  
+  "cursor.completion.spellingCorrections": true,
+  "cursor.chat.gptMode": "deterministic",
+  "cursor.features.copilot": true,
+  "cursor.features.chat": true,
+  "cursor.chatCompletionOptions.temperature": 0.2,
+  
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript", 
+    "typescriptreact"
+  ],
+  "eslint.packageManager": "npm",
+  "prettier.singleQuote": true,
+  "prettier.semi": false,
+  "prettier.trailingComma": "es5",
+  "prettier.printWidth": 100,
+  "prettier.tabWidth": 2
+} 

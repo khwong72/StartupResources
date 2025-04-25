@@ -3,6 +3,7 @@ import { fadeIn, staggerContainer } from "@/lib/animations";
 import { Users, LightbulbIcon, Target, Briefcase, GraduationCap, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
+import { Link } from "wouter";
 
 export default function Recruitment() {
   // Ensure page loads at the top
@@ -188,8 +189,10 @@ export default function Recruitment() {
         <h3 className="text-xl font-medium text-gray-900 mb-6">
           Would you like to hire and retain valuable talent to enjoy long-term growth? Get in touch to book a call to discuss your talent strategy.
         </h3>
-        <Button size="lg" className="bg-primary hover:bg-primary/90">
-          Get in Touch
+        <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
+          <Link href="/#contact">
+            <a>Get in Touch</a>
+          </Link>
         </Button>
       </motion.div>
     </div>

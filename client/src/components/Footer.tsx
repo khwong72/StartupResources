@@ -1,12 +1,12 @@
-import { Facebook, Twitter, Linkedin, Mail, Phone, MapPin } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 import Logo from "@/components/Logo";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const services = [
-    { name: "HR Support", href: "#services" },
-    { name: "Recruitment", href: "#services" }
+    { name: "HR Support", href: "/hr-support" },
+    { name: "Recruitment", href: "/recruitment" }
   ];
 
   const legal = [
@@ -18,10 +18,6 @@ export default function Footer() {
     { 
       icon: <Mail className="w-5 h-5 mr-2" />, 
       content: "louisa@startupresources.co.uk" 
-    },
-    { 
-      icon: <Phone className="w-5 h-5 mr-2" />, 
-      content: "+44 (0) 123 456 7890" 
     },
     { 
       icon: <MapPin className="w-5 h-5 mr-2" />, 
@@ -40,17 +36,6 @@ export default function Footer() {
             <p className="text-gray-400 text-sm mb-4">
               Low-cost, flexible hiring support focused on delivering A-players without the typical agency fees.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Linkedin className="w-5 h-5" />
-              </a>
-            </div>
           </div>
           
           <div>
