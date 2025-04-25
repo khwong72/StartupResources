@@ -13,4 +13,10 @@ app.get('/api', (req, res) => {
 })
 
 // Export Express API as a module for Vercel serverless
-export default app 
+export default function handler(req, res) {
+  // Simple health check endpoint
+  res.status(200).json({ 
+    status: 'ok',
+    message: 'API is working!'
+  })
+} 
