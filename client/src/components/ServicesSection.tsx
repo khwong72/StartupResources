@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { fadeIn, staggerContainer } from "@/lib/animations";
 import { ArrowRight, Users, Handshake, Award, DollarSign, Clock } from "lucide-react";
+import { Link } from "wouter";
 
 export default function ServicesSection() {
   const services = [
@@ -13,7 +14,8 @@ export default function ServicesSection() {
         "Contract creation",
         "Onboarding support"
       ],
-      color: "bg-emerald-50 text-emerald-700"
+      color: "bg-emerald-50 text-emerald-700",
+      link: "/hr-support"
     },
     {
       title: "Recruitment",
@@ -24,7 +26,8 @@ export default function ServicesSection() {
         "Business positions",
         "Executive search"
       ],
-      color: "bg-blue-50 text-blue-700"
+      color: "bg-blue-50 text-blue-700",
+      link: "/recruitment"
     }
   ];
 
@@ -106,13 +109,12 @@ export default function ServicesSection() {
                 </div>
                 
                 <div className="mt-8">
-                  <a 
-                    href="#contact" 
-                    className="inline-flex items-center text-primary font-semibold hover:text-primary-600 transition-colors"
-                  >
-                    Learn More
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </a>
+                  <Link href={service.link}> 
+                    <a className="inline-flex items-center text-primary font-semibold hover:text-primary-600 transition-colors">
+                      Learn More
+                      <ArrowRight className="ml-2 w-5 h-5" />
+                    </a>
+                  </Link>
                 </div>
               </div>
             </motion.div>

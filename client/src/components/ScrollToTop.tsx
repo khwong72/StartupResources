@@ -2,9 +2,16 @@ import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnimatePresence, motion } from "framer-motion";
+import { useLocation } from "wouter";
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
+  const [location] = useLocation();
+
+  // Scroll to top when location changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   useEffect(() => {
     const toggleVisibility = () => {

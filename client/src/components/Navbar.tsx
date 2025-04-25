@@ -20,7 +20,8 @@ export default function Navbar() {
 
   const navItems = [
     { label: "Services", href: "#services" },
-    { label: "How It Works", href: "#how-it-works" },
+    { label: "Case Studies", href: "#case-studies" },
+    { label: "Blog", href: "#blog" },
     { label: "Pricing", href: "#pricing" },
     { label: "About", href: "#about" },
     { label: "Contact", href: "#contact" },

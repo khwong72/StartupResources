@@ -1,7 +1,8 @@
 import HeroSection from "@/components/HeroSection";
 import ValueProposition from "@/components/ValueProposition";
 import ServicesSection from "@/components/ServicesSection";
-import HowItWorksSection from "@/components/HowItWorksSection";
+import CaseStudiesSection from "@/components/CaseStudiesSection";
+import BlogSection from "@/components/BlogSection";
 import PricingSection from "@/components/PricingSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import AboutSection from "@/components/AboutSection";
@@ -13,7 +14,8 @@ export default function Home() {
       <HeroSection />
       <ValueProposition />
       <ServicesSection />
-      <HowItWorksSection />
+      <CaseStudiesSection />
+      <BlogSection />
       <PricingSection />
       <TestimonialsSection />
       <AboutSection />

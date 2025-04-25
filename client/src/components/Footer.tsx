@@ -6,22 +6,18 @@ export default function Footer() {
 
   const services = [
     { name: "HR Support", href: "#services" },
-    { name: "Recruitment", href: "#services" },
-    { name: "Pricing", href: "#pricing" },
-    { name: "How It Works", href: "#how-it-works" }
+    { name: "Recruitment", href: "#services" }
   ];
 
-  const about = [
-    { name: "Our Story", href: "#about" },
-    { name: "Blog", href: "#" },
-    { name: "Testimonials", href: "#" },
-    { name: "Careers", href: "#" }
+  const legal = [
+    { name: "Privacy Policy", href: "/privacy-policy" },
+    { name: "Cookie Policy", href: "/cookie-policy" }
   ];
 
   const contact = [
     { 
       icon: <Mail className="w-5 h-5 mr-2" />, 
-      content: "info@startupresources.co.uk" 
+      content: "louisa@startupresources.co.uk" 
     },
     { 
       icon: <Phone className="w-5 h-5 mr-2" />, 
@@ -29,7 +25,7 @@ export default function Footer() {
     },
     { 
       icon: <MapPin className="w-5 h-5 mr-2" />, 
-      content: "London, United Kingdom" 
+      content: "5 Brayford Square, London, E1 0SG" 
     }
   ];
 
@@ -74,9 +70,9 @@ export default function Footer() {
           </div>
           
           <div>
-            <h3 className="text-lg font-bold mb-4">About</h3>
+            <h3 className="text-lg font-bold mb-4">Legal</h3>
             <ul className="space-y-2">
-              {about.map((item) => (
+              {legal.map((item) => (
                 <li key={item.name}>
                   <a 
                     href={item.href} 
