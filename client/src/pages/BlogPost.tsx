@@ -66,6 +66,18 @@ const blogPosts: BlogPostType[] = [
     slug: '/blog/talent-strategy-for-startups-finding-keeping-the-best-people',
     content: `
       <p>You can only grow your startup once you've got the right people – and the race for top startup talent in 2024 will be more competitive than ever. What should founders & senior leaders be doing to improve their talent game as they grow this year? Listen to me in conversation with Alastair Cole about how startups can better find and keep the best talent.</p>
+      
+      <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 2rem 0;">
+        <iframe 
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+          src="https://www.youtube.com/embed/u3mywfs8KOI?source_ve_path=Mjg2NjQsMjg2NjQsMjg2NjQsMjg2NjY" 
+          title="Talent Strategy For Startups: Finding & Keeping The Best People" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+      
       <p>This live event recording covers key topics including recruitment strategies, talent retention, building attractive company cultures, and more.</p>
       <p>Watch the full event recording to learn actionable strategies for your startup's talent needs.</p>
     `
