@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { fadeIn, slideIn } from "@/lib/animations";
 import { useForm } from "react-hook-form";
@@ -16,12 +16,14 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const formSchema = z.object({
   firstName: z.string().min(2, "First name must be at least 2 characters"),
   lastName: z.string().min(2, "Last name must be at least 2 characters"),
   email: z.string().email("Please enter a valid email address"),
   company: z.string().optional(),
+  inquiryType: z.string().optional(),
   message: z.string().min(10, "Message must be at least 10 characters")
 });
 
@@ -38,9 +40,30 @@ export default function ContactSection() {
       lastName: "",
       email: "",
       company: "",
+      inquiryType: "",
       message: ""
     }
   });
+
+  useEffect(() => {
+    // Check if there's a URL parameter for type
+    const hash = window.location.hash;
+    if (hash && hash.includes('?')) {
+      const params = new URLSearchParams(hash.split('?')[1]);
+      const type = params.get('type');
+      
+      if (type === 'founder') {
+        form.setValue('inquiryType', 'founder');
+        form.setValue('message', 'I am a founder looking for hiring support for my startup.');
+      } else if (type === 'investor') {
+        form.setValue('inquiryType', 'investor');
+        form.setValue('message', 'I am an investor interested in recruitment support for my portfolio companies.');
+      }
+      
+      // Smooth scroll to contact section
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [form]);
 
   function onSubmit(data: FormValues) {
     setIsSubmitting(true);
@@ -140,23 +163,48 @@ export default function ContactSection() {
                   )}
                 />
                 
-                <FormField
-                  control={form.control}
-                  name="company"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-white">Company</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder="Your Company" 
-                          {...field} 
-                          className="rounded-lg border-transparent focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white text-gray-900"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="company"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-white">Company</FormLabel>
+                        <FormControl>
+                          <Input 
+                            placeholder="Your Company" 
+                            {...field} 
+                            className="rounded-lg border-transparent focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white text-gray-900"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={form.control}
+                    name="inquiryType"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-white">I am a</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger className="rounded-lg border-transparent focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white text-gray-900">
+                              <SelectValue placeholder="Select who you are" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="founder">Founder / Startup</SelectItem>
+                            <SelectItem value="investor">Investor / VC</SelectItem>
+                            <SelectItem value="other">Other</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
                 
                 <FormField
                   control={form.control}

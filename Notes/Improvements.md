@@ -5,7 +5,7 @@ Please change it to:
  Strategic hiring support for startup founders and VC portfolios — faster time-to-hire, lower burn, stronger cultural fit.
 Keep the “Work With Us” button, but let's add two clearer CTAs later down the page (see point 2). ✅
 
-2. Split CTAs for Founders and VCs
+2. Split CTAs for Founders and VCs ✅
 I’d like to add two clear CTA options further down the homepage:
 "Founder? Let's Talk Hiring."
 "Investor? Let's Protect Your Portfolio."

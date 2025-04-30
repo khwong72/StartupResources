@@ -7,12 +7,14 @@ import PricingSection from "@/components/PricingSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import AboutSection from "@/components/AboutSection";
 import ContactSection from "@/components/ContactSection";
+import TargetedCTAs from "@/components/TargetedCTAs";
 
 export default function Home() {
   return (
     <>
       <HeroSection />
       <ValueProposition />
+      <TargetedCTAs />
       <ServicesSection />
       <CaseStudiesSection />
       <BlogSection />
