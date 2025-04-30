@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { fadeIn, staggerContainer } from "@/lib/animations";
-import { ArrowRight, Users, Handshake, Award, DollarSign, Clock } from "lucide-react";
+import { ArrowRight, Users, Handshake } from "lucide-react";
 import { Link } from "wouter";
 
 export default function ServicesSection() {
@@ -38,24 +38,6 @@ export default function ServicesSection() {
     summary: "This way, you get top talent without the financial strain!"
   };
 
-  const benefits = [
-    {
-      title: "Quality Candidates",
-      icon: Award,
-      description: "Pre-screened talent matched to your specific requirements"
-    },
-    {
-      title: "Cost Effective",
-      icon: DollarSign,
-      description: "Lower fees than traditional recruitment agencies"
-    },
-    {
-      title: "Time Saving",
-      icon: Clock,
-      description: "Faster hiring process with qualified candidates"
-    }
-  ];
-
   return (
     <section id="services" className="py-24 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -66,7 +48,7 @@ export default function ServicesSection() {
           whileInView="show"
           viewport={{ once: true, amount: 0.25 }}
         >
-          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">OUR SERVICES</h2>
+          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Our Services</h2>
           <p className="mt-6 text-lg text-gray-600">
             Comprehensive recruitment solutions designed specifically for startups and scale-ups
           </p>
@@ -119,36 +101,6 @@ export default function ServicesSection() {
               </div>
             </motion.div>
           ))}
-        </motion.div>
-        
-        <motion.div
-          className="mt-24 bg-gray-50 rounded-3xl p-10 sm:p-16"
-          variants={fadeIn('up', 'tween', 0.5, 0.7)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.25 }}
-        >
-          <div className="text-center mb-12">
-            <h3 className="text-2xl font-bold text-gray-900">Why Choose Us</h3>
-            <p className="mt-3 text-gray-600">The advantages of working with our recruitment team</p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {benefits.map((benefit, index) => (
-              <motion.div 
-                key={index}
-                className="bg-white rounded-2xl p-8 shadow-sm"
-                variants={fadeIn('up', 'tween', index * 0.1 + 0.6, 0.5)}
-                whileHover={{ y: -5 }}
-              >
-                <div className="bg-primary/10 w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
-                  <benefit.icon className="w-6 h-6 text-primary" />
-                </div>
-                <h4 className="text-xl font-semibold text-gray-900 mb-3">{benefit.title}</h4>
-                <p className="text-gray-600">{benefit.description}</p>
-              </motion.div>
-            ))}
-          </div>
         </motion.div>
       </div>
     </section>

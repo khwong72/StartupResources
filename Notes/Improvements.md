@@ -11,7 +11,7 @@ I’d like to add two clear CTA options further down the homepage:
 "Investor? Let's Protect Your Portfolio."
 It’s important to make it obvious that we work with both groups.
 
-3. Add an “Impact” or “Wins” Section
+3. Add an “Impact” or “Wins” Section ✅ 
 Please create a section highlighting a few key stats to build trust fast.
 Example wins to include:
 3x faster hiring for Series A+B companies

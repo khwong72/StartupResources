@@ -1,23 +1,32 @@
 import { motion } from "framer-motion";
-import { Sparkles, Zap, Shield } from "lucide-react";
+import { Clock, PiggyBank, Users, Globe } from "lucide-react";
 import { fadeIn, staggerContainer, slideIn } from "@/lib/animations";
 
 export default function ValueProposition() {
-  const features = [
+  const impacts = [
     {
-      icon: <Sparkles className="h-6 w-6" />,
-      title: "Cost-Effective",
-      description: "Low, transparent fees from 10-12% of salary with flexible payment options to support your cash flow."
+      icon: <Clock className="h-6 w-6" />,
+      metric: "3x",
+      title: "Faster Hiring",
+      description: "Accelerated recruitment for Series A+B companies"
     },
     {
-      icon: <Zap className="h-6 w-6" />,
-      title: "Experienced Team",
-      description: "Founded by industry veterans with backgrounds in investment banks, energy firms, and SaaS companies."
+      icon: <PiggyBank className="h-6 w-6" />,
+      metric: "£450k+",
+      title: "Savings",
+      description: "Compared to traditional agency fees"
     },
     {
-      icon: <Shield className="h-6 w-6" />,
-      title: "Full HR Support",
-      description: "End-to-end support from workforce planning and contracts to onboarding to help accelerate your startup."
+      icon: <Users className="h-6 w-6" />,
+      metric: "95%+",
+      title: "Retention",
+      description: "Candidate retention after 6 months"
+    },
+    {
+      icon: <Globe className="h-6 w-6" />,
+      metric: "20+",
+      title: "Countries",
+      description: "International hiring expertise"
     }
   ];
 
@@ -38,25 +47,26 @@ export default function ValueProposition() {
         </motion.div>
         
         <motion.div 
-          className="grid md:grid-cols-3 gap-8"
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
           variants={staggerContainer}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.25 }}
         >
-          {features.map((feature, index) => (
+          {impacts.map((impact, index) => (
             <motion.div 
-              key={feature.title}
-              className="bg-white/70 backdrop-blur-md rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
+              key={impact.title}
+              className="bg-white/70 backdrop-blur-md rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 text-center"
               variants={slideIn('up', 'tween', index * 0.1, 0.7)}
               whileHover={{ y: -5 }}
             >
-              <div className="w-12 h-12 flex items-center justify-center rounded-full bg-primary-100 text-primary mb-5">
-                {feature.icon}
+              <div className="w-12 h-12 flex items-center justify-center rounded-full bg-primary-100 text-primary mb-4 mx-auto">
+                {impact.icon}
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
-              <p className="text-gray-600">
-                {feature.description}
+              <div className="text-4xl font-bold text-primary mb-1">{impact.metric}</div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{impact.title}</h3>
+              <p className="text-gray-600 text-sm">
+                {impact.description}
               </p>
             </motion.div>
           ))}
