@@ -38,7 +38,7 @@ export default function PricingSection() {
           whileInView="show"
           viewport={{ once: true, amount: 0.25 }}
         >
-          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">FLEXIBLE FEE OPTIONS</h2>
+          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Flexible Fee Options</h2>
           <p className="mt-4 text-lg text-gray-600">
             Transparent and affordable pricing designed with startups in mind
           </p>

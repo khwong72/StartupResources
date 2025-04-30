@@ -91,7 +91,7 @@ export default function ContactSection() {
           whileInView="show"
           viewport={{ once: true, amount: 0.25 }}
         >
-          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">CONTACT US</h2>
+          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Contact Us</h2>
           <p className="mt-4 text-lg text-gray-600">
             If you're a candidate and like to send us your CV, please send it to info@startupresources.co.uk or if you'd like to hire, please fill out the form below.
           </p>
