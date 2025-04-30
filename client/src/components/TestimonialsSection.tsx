@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Quote } from "lucide-react";
 import { fadeIn, staggerContainer } from "@/lib/animations";
 import { Button } from "@/components/ui/button";
 import { Rating } from "@/components/ui/rating";
@@ -8,24 +8,18 @@ import { Rating } from "@/components/ui/rating";
 export default function TestimonialsSection() {
   const testimonials = [
     {
-      quote: "Startup Resources helped us hire our entire engineering team at a fraction of what traditional recruiters would have charged. Their flexible payment options were perfect for our cash flow situation.",
-      author: "David Miller",
-      role: "CTO, TechFlow",
-      initials: "DM",
+      quote: "Hired two senior engineers in under 3 weeks. Saved us £75K compared to traditional recruiters while getting better candidates.",
+      role: "CTO, AI Startup",
       rating: 5
     },
     {
-      quote: "As a first-time founder, navigating the hiring process was daunting. Startup Resources provided end-to-end support that made building our team straightforward and affordable.",
-      author: "Sarah Johnson",
-      role: "CEO, GreenScale",
-      initials: "SJ",
+      quote: "3x faster hiring process. Great technical understanding of our needs. 100% candidate retention after 12 months.",
+      role: "CEO, Fintech Scale-up",
       rating: 5
     },
     {
-      quote: "We were scaling fast and needed to hire 10 people in 3 months. Startup Resources delivered quality candidates quickly and at a price point that worked with our budget constraints.",
-      author: "Michael Patel",
-      role: "COO, FinEdge",
-      initials: "MP",
+      quote: "Built our product team from scratch in 6 weeks. Responsive, cost-effective, and understood our culture perfectly.",
+      role: "COO, SaaS Platform",
       rating: 5
     }
   ];
@@ -39,6 +33,19 @@ export default function TestimonialsSection() {
 
   const nextTestimonial = () => {
     setActiveIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+  };
+
+  // Function to highlight key metrics in testimonials
+  const highlightMetrics = (text: string): string => {
+    // Manually handle specific cases first
+    text = text.replace(/3x/g, '<span class="text-primary font-bold">3x</span>');
+    text = text.replace(/£75K/g, '<span class="text-primary font-bold">£75K</span>');
+    text = text.replace(/100%/g, '<span class="text-primary font-bold">100%</span>');
+    text = text.replace(/12 months/g, '<span class="text-primary font-bold">12 months</span>');
+    text = text.replace(/6 weeks/g, '<span class="text-primary font-bold">6 weeks</span>');
+    text = text.replace(/3 weeks/g, '<span class="text-primary font-bold">3 weeks</span>');
+    
+    return text;
   };
 
   return (
@@ -67,25 +74,27 @@ export default function TestimonialsSection() {
         >
           {testimonials.map((testimonial, index) => (
             <motion.div 
-              key={testimonial.author}
-              className="bg-gray-50 rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300"
+              key={testimonial.role}
+              className="bg-gray-50 rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 relative overflow-hidden"
               variants={fadeIn('up', 'tween', index * 0.1, 0.7)}
               whileHover={{ y: -10 }}
             >
+              {/* Large decorative quote mark */}
+              <div className="absolute -top-2 -left-2 text-primary/10">
+                <Quote size={80} />
+              </div>
+              
               <div className="flex items-center mb-6">
                 <Rating value={testimonial.rating} />
               </div>
-              <blockquote className="text-gray-700 mb-6">
-                "{testimonial.quote}"
-              </blockquote>
-              <div className="flex items-center">
-                <div className="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center mr-4">
-                  <span className="text-primary-700 font-bold">{testimonial.initials}</span>
-                </div>
-                <div>
-                  <div className="font-semibold text-gray-900">{testimonial.author}</div>
-                  <div className="text-sm text-gray-600">{testimonial.role}</div>
-                </div>
+              
+              <blockquote 
+                className="text-xl font-medium text-gray-800 mb-6 relative z-10"
+                dangerouslySetInnerHTML={{ __html: highlightMetrics(testimonial.quote) }}
+              />
+              
+              <div className="mt-auto pt-4 border-t border-gray-200">
+                <div className="text-sm font-semibold text-gray-900">{testimonial.role}</div>
               </div>
             </motion.div>
           ))}
@@ -100,26 +109,28 @@ export default function TestimonialsSection() {
           viewport={{ once: true, amount: 0.25 }}
         >
           <motion.div 
-            key={mobileView.author}
-            className="bg-gray-50 rounded-2xl p-8 shadow-md"
+            key={mobileView.role}
+            className="bg-gray-50 rounded-2xl p-8 shadow-md relative overflow-hidden"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
           >
+            {/* Large decorative quote mark */}
+            <div className="absolute -top-2 -left-2 text-primary/10">
+              <Quote size={80} />
+            </div>
+            
             <div className="flex items-center mb-6">
               <Rating value={mobileView.rating} />
             </div>
-            <blockquote className="text-gray-700 mb-6">
-              "{mobileView.quote}"
-            </blockquote>
-            <div className="flex items-center">
-              <div className="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center mr-4">
-                <span className="text-primary-700 font-bold">{mobileView.initials}</span>
-              </div>
-              <div>
-                <div className="font-semibold text-gray-900">{mobileView.author}</div>
-                <div className="text-sm text-gray-600">{mobileView.role}</div>
-              </div>
+            
+            <blockquote 
+              className="text-xl font-medium text-gray-800 mb-6 relative z-10"
+              dangerouslySetInnerHTML={{ __html: highlightMetrics(mobileView.quote) }}
+            />
+            
+            <div className="mt-auto pt-4 border-t border-gray-200">
+              <div className="text-sm font-semibold text-gray-900">{mobileView.role}</div>
             </div>
           </motion.div>
           

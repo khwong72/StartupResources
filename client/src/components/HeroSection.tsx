@@ -22,16 +22,15 @@ export default function HeroSection() {
             className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl"
             variants={fadeIn('up', 'tween', 0.1, 0.7)}
           >
-            <span className="block">FLEXIBLE, LOW-COST</span>
-            <span className="block text-primary mt-2">TALENT SOLUTIONS FOR</span>
-            <span className="block mt-2">STARTUPS AND SCALE-UPS</span>
+            <span className="block">Scale Faster, Smarter,</span>
+            <span className="block text-primary mt-2">Without Hiring Headaches</span>
           </motion.h1>
           
           <motion.p 
             className="mt-8 text-lg leading-8 text-gray-600 mx-auto max-w-2xl"
             variants={fadeIn('up', 'tween', 0.3, 0.7)}
           >
-            At Startup Resources, we get it—scaling your team on a tight budget is tough. That's why we offer low-cost, flexible hiring support focused on delivering A-players without the typical agency fees.
+            Strategic hiring support for startup founders and VC portfolios delivering faster time-to-hire, lower burn rates, and stronger cultural fit.
           </motion.p>
           
           <motion.div 

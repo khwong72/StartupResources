@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { useRoute } from 'wouter'
 import { motion } from 'framer-motion'
-import { Calendar, ArrowLeft } from 'lucide-react'
+import { Calendar, ArrowLeft, ExternalLink } from 'lucide-react'
 import { fadeIn } from '@/lib/animations'
 import { BlogPost as BlogPostType } from '@/lib/types'
 import { Button } from '@/components/ui/button'
@@ -62,6 +62,7 @@ const blogPosts: BlogPostType[] = [
     excerpt: 'You can only grow your startup once you\'ve got the right people – and the race for top startup talent in 2024 will be more competitive than ever. What should founders & senior leaders be doing to improve their talent game as they grow this year? Listen to me in conversation with Alastair Cole about how startups can better find and keep the best talent.',
     date: 'Jan 10, 2024',
     author: 'Louisa Maglieri',
+    videoId: 'u3mywfs8KOI',
     imageUrl: 'https://images.squarespace-cdn.com/content/v1/64c7a9fe8afb0d5cac2ebe77/1704879058309-E5C1G93V50HZBMAUE0PU/IMAGES+-++The+Uplift+Partnership_+Campaigns%2C+Events%2C+Social+Media%2C+360+Slides%2C+Webinar%2C+Assets+_+Sales+Scoop+Slides+%2822%29.png?format=2500w',
     slug: '/blog/talent-strategy-for-startups-finding-keeping-the-best-people',
     content: `
@@ -80,6 +81,11 @@ const blogPosts: BlogPostType[] = [
       
       <p>This live event recording covers key topics including recruitment strategies, talent retention, building attractive company cultures, and more.</p>
       <p>Watch the full event recording to learn actionable strategies for your startup's talent needs.</p>
+      <p class="text-center mt-4">
+        <a href="https://www.youtube.com/watch?v=u3mywfs8KOI" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 bg-red-600 text-white font-medium rounded hover:bg-red-700 transition-colors">
+          Watch on YouTube <span class="ml-2">↗</span>
+        </a>
+      </p>
     `
   },
   {
@@ -184,11 +190,33 @@ export default function BlogPost() {
             animate="show"
             className="mb-12"
           >
-            <img 
-              src={post.imageUrl} 
-              alt={post.title} 
-              className="w-full rounded-xl shadow-md" 
-            />
+            {post.videoId ? (
+              <a 
+                href={`https://www.youtube.com/watch?v=${post.videoId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block relative rounded-xl overflow-hidden shadow-md"
+              >
+                <img 
+                  src={post.imageUrl} 
+                  alt={post.title} 
+                  className="w-full rounded-xl" 
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                  <div className="bg-red-600 rounded-full p-4 shadow-lg hover:bg-red-700 transition-colors">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="white">
+                      <path d="M8 5v14l11-7z"></path>
+                    </svg>
+                  </div>
+                </div>
+              </a>
+            ) : (
+              <img 
+                src={post.imageUrl} 
+                alt={post.title} 
+                className="w-full rounded-xl shadow-md" 
+              />
+            )}
           </motion.div>
 
           <motion.div

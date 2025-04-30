@@ -7,4 +7,5 @@ export interface BlogPost {
   imageUrl: string
   slug: string
   content: string
+  videoId?: string
 } 
