@@ -1,33 +1,38 @@
 import { motion } from "framer-motion";
 import { fadeIn, staggerContainer } from "@/lib/animations";
-import { ArrowRight, Users, Handshake } from "lucide-react";
-import { Link } from "wouter";
+import { 
+  LineChart, 
+  Users, 
+  CopyCheck, 
+  Puzzle, 
+  Layers 
+} from "lucide-react";
 
 export default function ServicesSection() {
   const services = [
     {
-      title: "HR Support",
-      description: "We provide HR and Recruitment support from workforce planning, employee contracts creation to onboarding support so that Founders can attract and retain talent to accelerate their startup.",
-      icon: Users,
-      features: [
-        "Workforce planning",
-        "Contract creation",
-        "Onboarding support"
-      ],
-      color: "bg-emerald-50 text-emerald-700",
-      link: "/hr-support"
+      title: "Talent Strategy",
+      description: "Build your hiring blueprint aligned with business goals",
+      icon: LineChart,
+      color: "bg-emerald-50/80 text-emerald-700 border-emerald-100"
     },
     {
-      title: "Recruitment",
-      description: "We source a-players to your startup or scale-up at a low fixed fee, meaning you can grow without huge agency fees. Our expertise covers technical, business, and executive roles.",
-      icon: Handshake,
-      features: [
-        "Technical roles",
-        "Business positions",
-        "Executive search"
-      ],
-      color: "bg-blue-50 text-blue-700",
-      link: "/recruitment"
+      title: "Full-Cycle Hiring",
+      description: "From job spec to offer acceptance with no hassle",
+      icon: CopyCheck,
+      color: "bg-blue-50/80 text-blue-700 border-blue-100"
+    },
+    {
+      title: "Workforce Planning",
+      description: "Structure your team for scalability and growth",
+      icon: Puzzle,
+      color: "bg-purple-50/80 text-purple-700 border-purple-100"
+    },
+    {
+      title: "Embedded Support",
+      description: "Our specialists integrated directly with your team",
+      icon: Layers,
+      color: "bg-amber-50/80 text-amber-700 border-amber-100"
     }
   ];
 
@@ -55,7 +60,7 @@ export default function ServicesSection() {
         </motion.div>
         
         <motion.div 
-          className="grid lg:grid-cols-2 gap-8"
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
           variants={staggerContainer}
           initial="hidden"
           whileInView="show"
@@ -64,40 +69,18 @@ export default function ServicesSection() {
           {services.map((service, index) => (
             <motion.div 
               key={service.title}
-              className="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300"
-              variants={fadeIn('up', 'tween', index * 0.2, 0.7)}
-              whileHover={{ y: -5 }}
+              className="backdrop-blur-sm bg-white/70 rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300"
+              variants={fadeIn('up', 'tween', index * 0.1, 0.7)}
+              whileHover={{ y: -5, scale: 1.02 }}
             >
-              <div className="p-10">
-                <div className="flex items-start">
-                  <div className={`p-4 rounded-2xl ${service.color} mb-6 mr-4`}>
-                    <service.icon className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">{service.title}</h3>
-                    <p className="text-gray-600 mb-8 leading-relaxed">
-                      {service.description}
-                    </p>
-                  </div>
+              <div className="p-8 flex flex-col items-center text-center">
+                <div className={`p-5 rounded-2xl ${service.color} mb-6 border`}>
+                  <service.icon className="w-8 h-8" />
                 </div>
-                
-                <div className="mt-6 space-y-4">
-                  {service.features.map((feature, i) => (
-                    <div key={i} className="flex items-center">
-                      <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
-                      <p className="text-gray-700">{feature}</p>
-                    </div>
-                  ))}
-                </div>
-                
-                <div className="mt-8">
-                  <Link href={service.link}> 
-                    <a className="inline-flex items-center text-primary font-semibold hover:text-primary-600 transition-colors">
-                      Learn More
-                      <ArrowRight className="ml-2 w-5 h-5" />
-                    </a>
-                  </Link>
-                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
+                <p className="text-gray-600">
+                  {service.description}
+                </p>
               </div>
             </motion.div>
           ))}

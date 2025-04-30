@@ -4,10 +4,13 @@ import Logo from "@/components/Logo";
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
+  // Commented out services section temporarily
+  /*
   const services = [
     { name: "HR Support", href: "/hr-support" },
     { name: "Recruitment", href: "/recruitment" }
   ];
+  */
 
   const legal = [
     { name: "Privacy Policy", href: "/privacy-policy" },
@@ -28,7 +31,7 @@ export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white py-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <div className="flex items-center mb-6">
               <Logo variant="white" />
@@ -38,6 +41,7 @@ export default function Footer() {
             </p>
           </div>
           
+          {/* Services section commented out
           <div>
             <h3 className="text-lg font-bold mb-4">Services</h3>
             <ul className="space-y-2">
@@ -53,6 +57,7 @@ export default function Footer() {
               ))}
             </ul>
           </div>
+          */}
           
           <div>
             <h3 className="text-lg font-bold mb-4">Legal</h3>
