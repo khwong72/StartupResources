@@ -1,86 +1,7 @@
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { fadeIn, slideIn } from "@/lib/animations";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { useToast } from "@/hooks/use-toast";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-
-const formSchema = z.object({
-  firstName: z.string().min(2, "First name must be at least 2 characters"),
-  lastName: z.string().min(2, "Last name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email address"),
-  company: z.string().optional(),
-  inquiryType: z.string().optional(),
-  message: z.string().min(10, "Message must be at least 10 characters")
-});
-
-type FormValues = z.infer<typeof formSchema>;
 
 export default function ContactSection() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
-
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      company: "",
-      inquiryType: "",
-      message: ""
-    }
-  });
-
-  useEffect(() => {
-    // Check if there's a URL parameter for type
-    const hash = window.location.hash;
-    if (hash && hash.includes('?')) {
-      const params = new URLSearchParams(hash.split('?')[1]);
-      const type = params.get('type');
-      
-      if (type === 'founder') {
-        form.setValue('inquiryType', 'founder');
-        form.setValue('message', 'I am a founder looking for hiring support for my startup.');
-      } else if (type === 'investor') {
-        form.setValue('inquiryType', 'investor');
-        form.setValue('message', 'I am an investor interested in recruitment support for my portfolio companies.');
-      }
-      
-      // Smooth scroll to contact section
-      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [form]);
-
-  function onSubmit(data: FormValues) {
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      console.log(data);
-      setIsSubmitting(false);
-      form.reset();
-      
-      toast({
-        title: "Message Sent!",
-        description: "Thank you for contacting us. We'll get back to you shortly.",
-      });
-    }, 1500);
-  }
-
   return (
     <section id="contact" className="py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -98,143 +19,23 @@ export default function ContactSection() {
         </motion.div>
         
         <motion.div 
-          className="max-w-3xl mx-auto bg-primary rounded-2xl overflow-hidden shadow-xl"
+          className="max-w-3xl mx-auto"
           variants={slideIn('up', 'tween', 0.2, 0.7)}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.25 }}
         >
-          <div className="p-8 sm:p-12">
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <FormField
-                    control={form.control}
-                    name="firstName"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-white">First Name <span className="text-red-300">*</span></FormLabel>
-                        <FormControl>
-                          <Input 
-                            placeholder="John" 
-                            {...field} 
-                            className="rounded-lg border-transparent focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white text-gray-900"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="lastName"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-white">Last Name <span className="text-red-300">*</span></FormLabel>
-                        <FormControl>
-                          <Input 
-                            placeholder="Doe" 
-                            {...field} 
-                            className="rounded-lg border-transparent focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white text-gray-900"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-white">Email <span className="text-red-300">*</span></FormLabel>
-                      <FormControl>
-                        <Input 
-                          type="email" 
-                          placeholder="john.doe@example.com" 
-                          {...field} 
-                          className="rounded-lg border-transparent focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white text-gray-900"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <FormField
-                    control={form.control}
-                    name="company"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-white">Company</FormLabel>
-                        <FormControl>
-                          <Input 
-                            placeholder="Your Company" 
-                            {...field} 
-                            className="rounded-lg border-transparent focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white text-gray-900"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <FormField
-                    control={form.control}
-                    name="inquiryType"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-white">I am a</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl>
-                            <SelectTrigger className="rounded-lg border-transparent focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white text-gray-900">
-                              <SelectValue placeholder="Select who you are" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            <SelectItem value="founder">Founder / Startup</SelectItem>
-                            <SelectItem value="investor">Investor / VC</SelectItem>
-                            <SelectItem value="other">Other</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                
-                <FormField
-                  control={form.control}
-                  name="message"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-white">Message <span className="text-red-300">*</span></FormLabel>
-                      <FormControl>
-                        <Textarea 
-                          placeholder="How can we help you?" 
-                          {...field} 
-                          rows={4} 
-                          className="rounded-lg border-transparent focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white text-gray-900"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
-                <Button 
-                  type="submit" 
-                  disabled={isSubmitting} 
-                  className="w-full rounded-lg bg-white text-primary py-3 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary"
-                >
-                  {isSubmitting ? "Submitting..." : "Submit"}
-                </Button>
-              </form>
-            </Form>
-          </div>
+          <iframe
+            src="https://tally.so/embed/mJgq6J?alignLeft=1&hideTitle=1&transparentBackground=1"
+            width="100%"
+            height="600"
+            frameBorder="0"
+            marginHeight={0}
+            marginWidth={0}
+            title="Contact Form"
+            className="shadow-xl rounded-2xl"
+            style={{ maxWidth: '100%' }}
+          ></iframe>
         </motion.div>
       </div>
     </section>
