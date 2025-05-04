@@ -3,13 +3,11 @@ import Logo from "@/components/Logo";
 import { useState } from 'react'
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const [email, setEmail] = useState('')
-  const [subscribed, setSubscribed] = useState(false)
 
   // Commented out services section temporarily
   /*
@@ -38,10 +36,9 @@ export default function Footer() {
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     // Basic form submission logic - replace with actual API call later
-    console.log('Form submitted:', { email, subscribed })
+    console.log('Form submitted:', { email })
     // Reset form or show success message
     setEmail('')
-    setSubscribed(false)
   }
 
   return (
@@ -131,16 +128,6 @@ export default function Footer() {
                 </Button>
               </div>
             </form>
-            <div className="mt-4 flex items-center space-x-2">
-              <Checkbox 
-                id="subscribe" 
-                checked={subscribed} 
-                onCheckedChange={(checked) => setSubscribed(checked === true)} 
-              />
-              <Label htmlFor="subscribe" className="text-sm leading-none text-gray-700 peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                Yes, subscribe me to your newsletter.
-              </Label>
-            </div>
           </div>
         </div>
         

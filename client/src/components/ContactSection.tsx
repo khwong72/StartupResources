@@ -1,7 +1,23 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { fadeIn, slideIn } from "@/lib/animations";
 
 export default function ContactSection() {
+  useEffect(() => {
+    // Load Tally embed script
+    const script = document.createElement('script');
+    script.src = 'https://tally.so/widgets/embed.js';
+    script.async = true;
+    
+    // Add the script to the document
+    document.body.appendChild(script);
+    
+    return () => {
+      // Clean up the script when component unmounts
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <section id="contact" className="py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -10,7 +26,7 @@ export default function ContactSection() {
           variants={fadeIn('up', 'tween', 0.1, 0.7)}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.25 }}
+          viewport={{ once: true, amount: 0.1 }}
         >
           <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Contact Us</h2>
           <p className="mt-4 text-lg text-gray-600">
@@ -19,23 +35,37 @@ export default function ContactSection() {
         </motion.div>
         
         <motion.div 
-          className="max-w-3xl mx-auto"
+          className="max-w-3xl mx-auto overflow-visible shadow-xl rounded-2xl"
           variants={slideIn('up', 'tween', 0.2, 0.7)}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.25 }}
+          viewport={{ once: true, amount: 0.05 }}
         >
-          <iframe
-            src="https://tally.so/embed/mJgq6J?alignLeft=1&hideTitle=1&transparentBackground=1"
-            width="100%"
-            height="600"
-            frameBorder="0"
-            marginHeight={0}
-            marginWidth={0}
-            title="Contact Form"
-            className="shadow-xl rounded-2xl"
-            style={{ maxWidth: '100%' }}
-          ></iframe>
+          <div 
+            className="p-6 sm:p-8 bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg border border-blue-100 rounded-2xl" 
+            style={{ 
+              background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(240,249,255,0.85) 100%)',
+              boxShadow: '0 10px 30px rgba(0,105,255,0.1)'
+            }}
+          >
+            {/* Tally embed widget */}
+            <div className="rounded-xl overflow-hidden">
+              <iframe
+                data-tally-src="https://tally.so/embed/mJgq6J?alignLeft=1&hideTitle=1&transparentBackground=1"
+                loading="lazy"
+                width="100%"
+                height="850"
+                frameBorder="0"
+                marginHeight={0}
+                marginWidth={0}
+                title="Contact Form"
+                style={{ 
+                  maxWidth: '100%',
+                  display: 'block' 
+                }}
+              ></iframe>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>
