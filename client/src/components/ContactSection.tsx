@@ -1,9 +1,28 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { fadeIn, slideIn } from "@/lib/animations";
 
 export default function ContactSection() {
+  const [formType, setFormType] = useState<string | null>(null);
+
   useEffect(() => {
+    // Handle URL parameters
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash.includes('?type=')) {
+        const type = hash.split('?type=')[1];
+        setFormType(type);
+        // Scroll to contact section
+        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+
+    // Check on initial load
+    handleHashChange();
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange);
+
     // Load Tally embed script
     const script = document.createElement('script');
     script.src = 'https://tally.so/widgets/embed.js';
@@ -13,10 +32,24 @@ export default function ContactSection() {
     document.body.appendChild(script);
     
     return () => {
-      // Clean up the script when component unmounts
-      document.body.removeChild(script);
+      // Clean up the script and event listener when component unmounts
+      document.removeEventListener('hashchange', handleHashChange);
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
     };
   }, []);
+
+  // Determine the form source URL based on type
+  const getTallyFormSrc = () => {
+    const baseUrl = "https://tally.so/embed/mJgq6J?alignLeft=1&hideTitle=1&transparentBackground=1";
+    if (formType === 'founder') {
+      return `${baseUrl}&preset={"userType":"Founder"}`;
+    } else if (formType === 'investor') {
+      return `${baseUrl}&preset={"userType":"Investor"}`;
+    }
+    return baseUrl;
+  };
 
   return (
     <section id="contact" className="py-20 bg-white">
@@ -51,7 +84,7 @@ export default function ContactSection() {
             {/* Tally embed widget */}
             <div className="rounded-xl overflow-hidden">
               <iframe
-                data-tally-src="https://tally.so/embed/mJgq6J?alignLeft=1&hideTitle=1&transparentBackground=1"
+                data-tally-src={getTallyFormSrc()}
                 loading="lazy"
                 width="100%"
                 height="850"
