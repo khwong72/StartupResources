@@ -4,10 +4,14 @@ import { useState } from 'react'
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
+import { Loader2 } from "lucide-react";
+import { saveEmailSubscription } from "@/lib/emailService";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const [email, setEmail] = useState('')
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   // Commented out services section temporarily
   /*
@@ -33,12 +37,30 @@ export default function Footer() {
     }
   ];
 
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    // Basic form submission logic - replace with actual API call later
-    console.log('Form submitted:', { email })
-    // Reset form or show success message
-    setEmail('')
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    if (!email || isSubmitting) return;
+    
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+    
+    try {
+      // Send to Google Sheets
+      const success = await saveEmailSubscription(email, 'Footer Form');
+      
+      if (success) {
+        setSubmitStatus('success');
+        setEmail('');
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitStatus('error');
+    }
+    
+    setIsSubmitting(false);
   }
 
   return (
@@ -100,33 +122,51 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* New Lead Capture Form Section */}
+          {/* Email Capture Form */}
           <div className="mt-10 xl:mt-0">
             <h3 className="text-sm font-semibold leading-6 text-gray-900">Want to hire smarter?</h3>
             <p className="mt-2 text-sm leading-6 text-gray-700">Drop your email.</p>
-            <form className="mt-6 sm:flex sm:max-w-md" onSubmit={handleFormSubmit}>
-              <label htmlFor="email-address" className="sr-only">
-                Email address
-              </label>
-              <Input
-                type="email"
-                name="email-address"
-                id="email-address"
-                autoComplete="email"
-                required
-                className="w-full min-w-0 appearance-none rounded-md border border-gray-400 bg-white px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:w-64 sm:text-sm sm:leading-6"
-                placeholder="your.email@example.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <div className="mt-4 sm:ml-4 sm:mt-0 sm:flex-shrink-0">
-                <Button 
-                  type="submit" 
-                  className="flex w-full items-center justify-center rounded-md bg-gray-800 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-800"
-                >
-                  Submit
-                </Button>
+            <form className="mt-6 sm:max-w-md" onSubmit={handleFormSubmit}>
+              <div className="sm:flex">
+                <label htmlFor="email-address" className="sr-only">
+                  Email address
+                </label>
+                <Input
+                  type="email"
+                  name="email-address"
+                  id="email-address"
+                  autoComplete="email"
+                  required
+                  className="w-full min-w-0 appearance-none rounded-md border border-gray-400 bg-white px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:w-64 sm:text-sm sm:leading-6"
+                  placeholder="your.email@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={isSubmitting}
+                />
+                <div className="mt-4 sm:ml-4 sm:mt-0 sm:flex-shrink-0">
+                  <Button 
+                    type="submit" 
+                    className="flex w-full items-center justify-center rounded-md bg-gray-800 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-800"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    ) : 'Submit'}
+                  </Button>
+                </div>
               </div>
+              
+              {/* Submission status messages */}
+              {submitStatus === 'success' && (
+                <p className="mt-2 text-sm text-green-600">
+                  Thanks! We'll be in touch soon.
+                </p>
+              )}
+              {submitStatus === 'error' && (
+                <p className="mt-2 text-sm text-red-600">
+                  Something went wrong. Please try again.
+                </p>
+              )}
             </form>
           </div>
         </div>

@@ -32,7 +32,7 @@ Embedded Support
 I’d like slightly stronger or more direct testimonial quotes if possible.
 Even anonymised short quotes would be fine, just so they feel more punchy.
 
-6. (Optional) Add a Small Footer Lead Capture Form 
+6. (Optional) Add a Small Footer Lead Capture Form ✅
 If possible, a simple form in the footer like:
 "Want to hire smarter? Drop your email."
 Just something light for people who aren’t ready to book a call straight away.
