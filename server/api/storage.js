@@ -1,3 +1,5 @@
+import express from 'express'
+
 // Adapt your storage logic for serverless functions
 export const storage = {
   // Add your storage methods here
@@ -8,4 +10,14 @@ export const storage = {
     // Implementation here
     return { username }
   }
-} 
+}
+
+// Create a router for storage operations
+const storageRouter = express.Router()
+
+// Example endpoint for storage status
+storageRouter.get('/status', (req, res) => {
+  res.json({ status: 'operational' })
+})
+
+export { storageRouter } 

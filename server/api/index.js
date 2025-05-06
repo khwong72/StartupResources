@@ -1,22 +1,25 @@
 import express from 'express'
+import { usersRouter } from './users.js'
+import { storageRouter } from './storage.js'
 
-// Create an Express instance for serverless functions
-const app = express()
+// Create an Express router for API endpoints
+const apiRouter = express.Router()
 
 // Add required middleware
-app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
+apiRouter.use(express.json())
+apiRouter.use(express.urlencoded({ extended: false }))
 
-// Example endpoint
-app.get('/api', (req, res) => {
-  res.json({ message: 'API is working!' })
-})
-
-// Export Express API as a module for Vercel serverless
-export default function handler(req, res) {
-  // Simple health check endpoint
-  res.status(200).json({ 
+// Health check endpoint
+apiRouter.get('/', (req, res) => {
+  res.json({ 
     status: 'ok',
     message: 'API is working!'
   })
-} 
+})
+
+// Register other API routes
+apiRouter.use('/users', usersRouter)
+apiRouter.use('/storage', storageRouter)
+
+// Export the router to be mounted by the main app
+export default apiRouter 
